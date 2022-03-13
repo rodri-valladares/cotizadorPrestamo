@@ -10,7 +10,7 @@ import './App.css';
 function App() {
   //Defino state para pasar información a los componentes hijos
   const [cantidad, guardarCantidad] = useState(0);
-  const [plazo, guardarPlazo] = useState(0);
+  const [plazo, guardarPlazo] = useState('');
   return (
       <Fragment>
         <Header 
