@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, Fragment} from 'react';
+import {calcularTotal} from '../helpers';
 
 const Formulario = ({cantidad, guardarCantidad, plazo, guardarPlazo})=> {
 
@@ -12,13 +13,20 @@ const Formulario = ({cantidad, guardarCantidad, plazo, guardarPlazo})=> {
          // Validar el formulario
         if( cantidad === 0 || plazo === ''){
             guardarError(true);
+            return;
         }
-        console.log('Enviando formulario...');
+
+        guardarError(false);
+
+        const total = calcularTotal(cantidad, plazo);
+        console.log(total);
+        
     }
 
    
 
     return(
+    <Fragment>
         <form onSubmit={ calcularPrestamo }>
            {/*  {cantidad}
             {plazo} */}
@@ -53,9 +61,14 @@ const Formulario = ({cantidad, guardarCantidad, plazo, guardarPlazo})=> {
                   />
               </div>
           </div>
-  </form>
+        </form>
 
-    )
+        {(error) ? <p className="error">Todos los campos son obligatorios</p> : null}
+
+        
+
+    </Fragment>   
+    );
 }
 
 export default Formulario;
